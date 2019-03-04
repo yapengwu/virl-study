@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <topology xmlns="http://www.cisco.com/VIRL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="0.95" xsi:schemaLocation="http://www.cisco.com/VIRL https://raw.github.com/CiscoVIRL/schema/v0.95/virl.xsd">
-    <node name="as-01" type="SIMPLE" subtype="IOSv" location="206,176" ipv4="1.1.1.1">
+    <extensions>
+        <entry key="management_network" type="String">flat</entry>
+    </extensions>
+    <node name="as-01" type="SIMPLE" subtype="CSR1000v" location="206,176" ipv4="1.1.1.1">
         <extensions>
-            <entry key="config" type="string">! IOS Config generated on 2018-12-18 17:04
+            <entry key="config" type="string">! IOS Config generated on 2018-12-19 22:11
 ! by autonetkit_0.24.0
 !
 hostname as-01
@@ -19,12 +22,17 @@ vrf definition Mgmt-intf
 !
 !
 !
+license accept end user agreement
+license boot level premium
+!
+!
+!
+netconf-yang
+!
 no aaa new-model
 !
 !
-ip cef
 ipv6 unicast-routing
-ipv6 cef
 !
 !
 service timestamps debug datetime msec
@@ -32,6 +40,7 @@ service timestamps log datetime msec
 no service password-encryption
 no service config
 enable password cisco
+enable secret 4 tnhtc92DXBhelxjYk8LWJrPV36S2i4ntXrpb4RFmfqY
 ip classless
 ip subnet-zero
 no ip domain lookup
@@ -54,37 +63,29 @@ interface Loopback0
   description Loopback
   ip address 1.1.1.1 255.255.255.255
 !
-interface GigabitEthernet0/0
+interface GigabitEthernet1
   description OOB Management
   vrf forwarding Mgmt-intf
   ! Configured on launch
   no ip address
-  duplex full
-  speed auto
   no shutdown
 !
-interface GigabitEthernet0/1
+interface GigabitEthernet2
   description to server-1
   ip address 10.0.0.13 255.255.255.252
   ip ospf cost 1
-  duplex full
-  speed auto
   no shutdown
 !
-interface GigabitEthernet0/2
+interface GigabitEthernet3
   description to as-04
   ip address 10.0.0.49 255.255.255.252
   ip ospf cost 1
-  duplex full
-  speed auto
   no shutdown
 !
-interface GigabitEthernet0/3
+interface GigabitEthernet4
   description to as-03
   ip address 10.0.0.29 255.255.255.252
   ip ospf cost 1
-  duplex full
-  speed auto
   no shutdown
 !
 !
@@ -114,16 +115,17 @@ router bgp 1
 end</entry>
             <entry key="AutoNetkit.mgmt_ip" type="string"></entry>
             <entry key="AutoNetkit.IGP" type="String">ospf</entry>
-            <entry key="AutoNetkit.ibgp_role" type="String">Disabled</entry>
             <entry key="AutoNetkit.custom_config_loopback_zero" type="String">1.1.1.1</entry>
+            <entry key="AutoNetkit.ibgp_role" type="String">Disabled</entry>
+            <entry key="AutoNetkit.custom_config_global" type="String">netconf-yang</entry>
         </extensions>
-        <interface id="0" name="GigabitEthernet0/1" ipv4="10.0.0.13" netPrefixLenV4="30"/>
-        <interface id="1" name="GigabitEthernet0/2" ipv4="10.0.0.49" netPrefixLenV4="30"/>
-        <interface id="2" name="GigabitEthernet0/3" ipv4="10.0.0.29" netPrefixLenV4="30"/>
+        <interface id="0" name="GigabitEthernet2" ipv4="10.0.0.13" netPrefixLenV4="30"/>
+        <interface id="1" name="GigabitEthernet3" ipv4="10.0.0.49" netPrefixLenV4="30"/>
+        <interface id="2" name="GigabitEthernet4" ipv4="10.0.0.29" netPrefixLenV4="30"/>
     </node>
-    <node name="as-02" type="SIMPLE" subtype="IOSv" location="204,303" ipv4="2.2.2.2">
+    <node name="as-02" type="SIMPLE" subtype="CSR1000v" location="204,303" ipv4="2.2.2.2">
         <extensions>
-            <entry key="config" type="string">! IOS Config generated on 2018-12-18 17:04
+            <entry key="config" type="string">! IOS Config generated on 2018-12-19 22:11
 ! by autonetkit_0.24.0
 !
 hostname as-02
@@ -140,12 +142,17 @@ vrf definition Mgmt-intf
 !
 !
 !
+license accept end user agreement
+license boot level premium
+!
+!
+!
+netconf-yang
+!
 no aaa new-model
 !
 !
-ip cef
 ipv6 unicast-routing
-ipv6 cef
 !
 !
 service timestamps debug datetime msec
@@ -153,6 +160,7 @@ service timestamps log datetime msec
 no service password-encryption
 no service config
 enable password cisco
+enable secret 4 tnhtc92DXBhelxjYk8LWJrPV36S2i4ntXrpb4RFmfqY
 ip classless
 ip subnet-zero
 no ip domain lookup
@@ -175,37 +183,29 @@ interface Loopback0
   description Loopback
   ip address 2.2.2.2 255.255.255.255
 !
-interface GigabitEthernet0/0
+interface GigabitEthernet1
   description OOB Management
   vrf forwarding Mgmt-intf
   ! Configured on launch
   no ip address
-  duplex full
-  speed auto
   no shutdown
 !
-interface GigabitEthernet0/1
+interface GigabitEthernet2
   description to server-2
   ip address 10.0.0.5 255.255.255.252
   ip ospf cost 1
-  duplex full
-  speed auto
   no shutdown
 !
-interface GigabitEthernet0/2
+interface GigabitEthernet3
   description to as-03
   ip address 10.0.0.61 255.255.255.252
   ip ospf cost 1
-  duplex full
-  speed auto
   no shutdown
 !
-interface GigabitEthernet0/3
+interface GigabitEthernet4
   description to as-04
   ip address 10.0.0.73 255.255.255.252
   ip ospf cost 1
-  duplex full
-  speed auto
   no shutdown
 !
 !
@@ -235,16 +235,17 @@ router bgp 1
 end</entry>
             <entry key="AutoNetkit.mgmt_ip" type="string"></entry>
             <entry key="AutoNetkit.IGP" type="String">ospf</entry>
-            <entry key="AutoNetkit.ibgp_role" type="String">Disabled</entry>
             <entry key="AutoNetkit.custom_config_loopback_zero" type="String">2.2.2.2</entry>
+            <entry key="AutoNetkit.ibgp_role" type="String">Disabled</entry>
+            <entry key="AutoNetkit.custom_config_global" type="String">netconf-yang</entry>
         </extensions>
-        <interface id="0" name="GigabitEthernet0/1" ipv4="10.0.0.5" netPrefixLenV4="30"/>
-        <interface id="1" name="GigabitEthernet0/2" ipv4="10.0.0.61" netPrefixLenV4="30"/>
-        <interface id="2" name="GigabitEthernet0/3" ipv4="10.0.0.73" netPrefixLenV4="30"/>
+        <interface id="0" name="GigabitEthernet2" ipv4="10.0.0.5" netPrefixLenV4="30"/>
+        <interface id="1" name="GigabitEthernet3" ipv4="10.0.0.61" netPrefixLenV4="30"/>
+        <interface id="2" name="GigabitEthernet4" ipv4="10.0.0.73" netPrefixLenV4="30"/>
     </node>
-    <node name="as-03" type="SIMPLE" subtype="IOSv" location="361,171" ipv4="3.3.3.3">
+    <node name="as-03" type="SIMPLE" subtype="CSR1000v" location="361,171" ipv4="3.3.3.3">
         <extensions>
-            <entry key="config" type="string">! IOS Config generated on 2018-12-18 17:04
+            <entry key="config" type="string">! IOS Config generated on 2018-12-19 22:11
 ! by autonetkit_0.24.0
 !
 hostname as-03
@@ -261,12 +262,17 @@ vrf definition Mgmt-intf
 !
 !
 !
+license accept end user agreement
+license boot level premium
+!
+!
+!
+netconf-yang
+!
 no aaa new-model
 !
 !
-ip cef
 ipv6 unicast-routing
-ipv6 cef
 !
 !
 service timestamps debug datetime msec
@@ -274,6 +280,7 @@ service timestamps log datetime msec
 no service password-encryption
 no service config
 enable password cisco
+enable secret 4 tnhtc92DXBhelxjYk8LWJrPV36S2i4ntXrpb4RFmfqY
 ip classless
 ip subnet-zero
 no ip domain lookup
@@ -296,37 +303,29 @@ interface Loopback0
   description Loopback
   ip address 3.3.3.3 255.255.255.255
 !
-interface GigabitEthernet0/0
+interface GigabitEthernet1
   description OOB Management
   vrf forwarding Mgmt-intf
   ! Configured on launch
   no ip address
-  duplex full
-  speed auto
   no shutdown
 !
-interface GigabitEthernet0/1
+interface GigabitEthernet2
   description to as-02
   ip address 10.0.0.62 255.255.255.252
   ip ospf cost 1
-  duplex full
-  speed auto
   no shutdown
 !
-interface GigabitEthernet0/2
+interface GigabitEthernet3
   description to as-01
   ip address 10.0.0.30 255.255.255.252
   ip ospf cost 1
-  duplex full
-  speed auto
   no shutdown
 !
-interface GigabitEthernet0/3
+interface GigabitEthernet4
   description to pe-01
   ip address 10.0.0.25 255.255.255.252
   ip ospf cost 1
-  duplex full
-  speed auto
   no shutdown
 !
 !
@@ -356,16 +355,17 @@ router bgp 1
 end</entry>
             <entry key="AutoNetkit.mgmt_ip" type="string"></entry>
             <entry key="AutoNetkit.IGP" type="String">ospf</entry>
-            <entry key="AutoNetkit.ibgp_role" type="String">Disabled</entry>
             <entry key="AutoNetkit.custom_config_loopback_zero" type="String">3.3.3.3</entry>
+            <entry key="AutoNetkit.ibgp_role" type="String">Disabled</entry>
+            <entry key="AutoNetkit.custom_config_global" type="String">netconf-yang</entry>
         </extensions>
-        <interface id="0" name="GigabitEthernet0/1" ipv4="10.0.0.62" netPrefixLenV4="30"/>
-        <interface id="1" name="GigabitEthernet0/2" ipv4="10.0.0.30" netPrefixLenV4="30"/>
-        <interface id="2" name="GigabitEthernet0/3" ipv4="10.0.0.25" netPrefixLenV4="30"/>
+        <interface id="0" name="GigabitEthernet2" ipv4="10.0.0.62" netPrefixLenV4="30"/>
+        <interface id="1" name="GigabitEthernet3" ipv4="10.0.0.30" netPrefixLenV4="30"/>
+        <interface id="2" name="GigabitEthernet4" ipv4="10.0.0.25" netPrefixLenV4="30"/>
     </node>
-    <node name="as-04" type="SIMPLE" subtype="IOSv" location="361,300" ipv4="4.4.4.4">
+    <node name="as-04" type="SIMPLE" subtype="CSR1000v" location="361,300" ipv4="4.4.4.4">
         <extensions>
-            <entry key="config" type="string">! IOS Config generated on 2018-12-18 17:04
+            <entry key="config" type="string">! IOS Config generated on 2018-12-19 22:11
 ! by autonetkit_0.24.0
 !
 hostname as-04
@@ -382,12 +382,17 @@ vrf definition Mgmt-intf
 !
 !
 !
+license accept end user agreement
+license boot level premium
+!
+!
+!
+netconf-yang
+!
 no aaa new-model
 !
 !
-ip cef
 ipv6 unicast-routing
-ipv6 cef
 !
 !
 service timestamps debug datetime msec
@@ -395,6 +400,7 @@ service timestamps log datetime msec
 no service password-encryption
 no service config
 enable password cisco
+enable secret 4 tnhtc92DXBhelxjYk8LWJrPV36S2i4ntXrpb4RFmfqY
 ip classless
 ip subnet-zero
 no ip domain lookup
@@ -417,37 +423,29 @@ interface Loopback0
   description Loopback
   ip address 4.4.4.4 255.255.255.255
 !
-interface GigabitEthernet0/0
+interface GigabitEthernet1
   description OOB Management
   vrf forwarding Mgmt-intf
   ! Configured on launch
   no ip address
-  duplex full
-  speed auto
   no shutdown
 !
-interface GigabitEthernet0/1
+interface GigabitEthernet2
   description to as-01
   ip address 10.0.0.50 255.255.255.252
   ip ospf cost 1
-  duplex full
-  speed auto
   no shutdown
 !
-interface GigabitEthernet0/2
+interface GigabitEthernet3
   description to as-02
   ip address 10.0.0.74 255.255.255.252
   ip ospf cost 1
-  duplex full
-  speed auto
   no shutdown
 !
-interface GigabitEthernet0/3
+interface GigabitEthernet4
   description to pe-02
   ip address 10.0.0.77 255.255.255.252
   ip ospf cost 1
-  duplex full
-  speed auto
   no shutdown
 !
 !
@@ -477,16 +475,17 @@ router bgp 1
 end</entry>
             <entry key="AutoNetkit.mgmt_ip" type="string"></entry>
             <entry key="AutoNetkit.IGP" type="String">ospf</entry>
-            <entry key="AutoNetkit.ibgp_role" type="String">Disabled</entry>
             <entry key="AutoNetkit.custom_config_loopback_zero" type="String">4.4.4.4</entry>
+            <entry key="AutoNetkit.ibgp_role" type="String">Disabled</entry>
+            <entry key="AutoNetkit.custom_config_global" type="String">netconf-yang</entry>
         </extensions>
-        <interface id="0" name="GigabitEthernet0/1" ipv4="10.0.0.50" netPrefixLenV4="30"/>
-        <interface id="1" name="GigabitEthernet0/2" ipv4="10.0.0.74" netPrefixLenV4="30"/>
-        <interface id="2" name="GigabitEthernet0/3" ipv4="10.0.0.77" netPrefixLenV4="30"/>
+        <interface id="0" name="GigabitEthernet2" ipv4="10.0.0.50" netPrefixLenV4="30"/>
+        <interface id="1" name="GigabitEthernet3" ipv4="10.0.0.74" netPrefixLenV4="30"/>
+        <interface id="2" name="GigabitEthernet4" ipv4="10.0.0.77" netPrefixLenV4="30"/>
     </node>
-    <node name="pe-01" type="SIMPLE" subtype="IOSv" location="521,93" ipv4="5.5.5.5">
+    <node name="pe-01" type="SIMPLE" subtype="CSR1000v" location="521,93" ipv4="5.5.5.5">
         <extensions>
-            <entry key="config" type="string">! IOS Config generated on 2018-12-18 17:04
+            <entry key="config" type="string">! IOS Config generated on 2018-12-19 22:11
 ! by autonetkit_0.24.0
 !
 hostname pe-01
@@ -503,12 +502,17 @@ vrf definition Mgmt-intf
 !
 !
 !
+license accept end user agreement
+license boot level premium
+!
+!
+!
+netconf-yang
+!
 no aaa new-model
 !
 !
-ip cef
 ipv6 unicast-routing
-ipv6 cef
 !
 !
 service timestamps debug datetime msec
@@ -516,6 +520,7 @@ service timestamps log datetime msec
 no service password-encryption
 no service config
 enable password cisco
+enable secret 4 tnhtc92DXBhelxjYk8LWJrPV36S2i4ntXrpb4RFmfqY
 ip classless
 ip subnet-zero
 no ip domain lookup
@@ -538,37 +543,29 @@ interface Loopback0
   description Loopback
   ip address 5.5.5.5 255.255.255.255
 !
-interface GigabitEthernet0/0
+interface GigabitEthernet1
   description OOB Management
   vrf forwarding Mgmt-intf
   ! Configured on launch
   no ip address
-  duplex full
-  speed auto
   no shutdown
 !
-interface GigabitEthernet0/1
+interface GigabitEthernet2
   description to as-03
   ip address 10.0.0.26 255.255.255.252
   ip ospf cost 1
-  duplex full
-  speed auto
   no shutdown
 !
-interface GigabitEthernet0/2
+interface GigabitEthernet3
   description to p-01
   ip address 10.0.0.10 255.255.255.252
   ip ospf cost 1
-  duplex full
-  speed auto
   no shutdown
 !
-interface GigabitEthernet0/3
+interface GigabitEthernet4
   description to p-02
   ip address 10.0.0.18 255.255.255.252
   ip ospf cost 1
-  duplex full
-  speed auto
   no shutdown
 !
 !
@@ -598,16 +595,17 @@ router bgp 1
 end</entry>
             <entry key="AutoNetkit.mgmt_ip" type="string"></entry>
             <entry key="AutoNetkit.IGP" type="String">ospf</entry>
-            <entry key="AutoNetkit.ibgp_role" type="String">Disabled</entry>
             <entry key="AutoNetkit.custom_config_loopback_zero" type="String">5.5.5.5</entry>
+            <entry key="AutoNetkit.ibgp_role" type="String">Disabled</entry>
+            <entry key="AutoNetkit.custom_config_global" type="String">netconf-yang</entry>
         </extensions>
-        <interface id="0" name="GigabitEthernet0/1" ipv4="10.0.0.26" netPrefixLenV4="30"/>
-        <interface id="1" name="GigabitEthernet0/2" ipv4="10.0.0.10" netPrefixLenV4="30"/>
-        <interface id="2" name="GigabitEthernet0/3" ipv4="10.0.0.18" netPrefixLenV4="30"/>
+        <interface id="0" name="GigabitEthernet2" ipv4="10.0.0.26" netPrefixLenV4="30"/>
+        <interface id="1" name="GigabitEthernet3" ipv4="10.0.0.10" netPrefixLenV4="30"/>
+        <interface id="2" name="GigabitEthernet4" ipv4="10.0.0.18" netPrefixLenV4="30"/>
     </node>
-    <node name="pe-02" type="SIMPLE" subtype="IOSv" location="531,409" ipv4="6.6.6.6">
+    <node name="pe-02" type="SIMPLE" subtype="CSR1000v" location="531,409" ipv4="6.6.6.6">
         <extensions>
-            <entry key="config" type="string">! IOS Config generated on 2018-12-18 17:04
+            <entry key="config" type="string">! IOS Config generated on 2018-12-19 22:11
 ! by autonetkit_0.24.0
 !
 hostname pe-02
@@ -624,12 +622,17 @@ vrf definition Mgmt-intf
 !
 !
 !
+license accept end user agreement
+license boot level premium
+!
+!
+!
+netconf-yang
+!
 no aaa new-model
 !
 !
-ip cef
 ipv6 unicast-routing
-ipv6 cef
 !
 !
 service timestamps debug datetime msec
@@ -637,6 +640,7 @@ service timestamps log datetime msec
 no service password-encryption
 no service config
 enable password cisco
+enable secret 4 tnhtc92DXBhelxjYk8LWJrPV36S2i4ntXrpb4RFmfqY
 ip classless
 ip subnet-zero
 no ip domain lookup
@@ -659,37 +663,29 @@ interface Loopback0
   description Loopback
   ip address 6.6.6.6 255.255.255.255
 !
-interface GigabitEthernet0/0
+interface GigabitEthernet1
   description OOB Management
   vrf forwarding Mgmt-intf
   ! Configured on launch
   no ip address
-  duplex full
-  speed auto
   no shutdown
 !
-interface GigabitEthernet0/1
+interface GigabitEthernet2
   description to as-04
   ip address 10.0.0.78 255.255.255.252
   ip ospf cost 1
-  duplex full
-  speed auto
   no shutdown
 !
-interface GigabitEthernet0/2
+interface GigabitEthernet3
   description to p-01
   ip address 10.0.0.22 255.255.255.252
   ip ospf cost 1
-  duplex full
-  speed auto
   no shutdown
 !
-interface GigabitEthernet0/3
+interface GigabitEthernet4
   description to p-02
   ip address 10.0.0.54 255.255.255.252
   ip ospf cost 1
-  duplex full
-  speed auto
   no shutdown
 !
 !
@@ -719,16 +715,17 @@ router bgp 1
 end</entry>
             <entry key="AutoNetkit.mgmt_ip" type="string"></entry>
             <entry key="AutoNetkit.IGP" type="String">ospf</entry>
-            <entry key="AutoNetkit.ibgp_role" type="String">Disabled</entry>
             <entry key="AutoNetkit.custom_config_loopback_zero" type="String">6.6.6.6</entry>
+            <entry key="AutoNetkit.ibgp_role" type="String">Disabled</entry>
+            <entry key="AutoNetkit.custom_config_global" type="String">netconf-yang</entry>
         </extensions>
-        <interface id="0" name="GigabitEthernet0/1" ipv4="10.0.0.78" netPrefixLenV4="30"/>
-        <interface id="1" name="GigabitEthernet0/2" ipv4="10.0.0.22" netPrefixLenV4="30"/>
-        <interface id="2" name="GigabitEthernet0/3" ipv4="10.0.0.54" netPrefixLenV4="30"/>
+        <interface id="0" name="GigabitEthernet2" ipv4="10.0.0.78" netPrefixLenV4="30"/>
+        <interface id="1" name="GigabitEthernet3" ipv4="10.0.0.22" netPrefixLenV4="30"/>
+        <interface id="2" name="GigabitEthernet4" ipv4="10.0.0.54" netPrefixLenV4="30"/>
     </node>
-    <node name="p-01" type="SIMPLE" subtype="IOSv" location="675,194" ipv4="7.7.7.7">
+    <node name="p-01" type="SIMPLE" subtype="CSR1000v" location="675,194" ipv4="7.7.7.7">
         <extensions>
-            <entry key="config" type="string">! IOS Config generated on 2018-12-18 17:04
+            <entry key="config" type="string">! IOS Config generated on 2018-12-19 22:11
 ! by autonetkit_0.24.0
 !
 hostname p-01
@@ -745,12 +742,17 @@ vrf definition Mgmt-intf
 !
 !
 !
+license accept end user agreement
+license boot level premium
+!
+!
+!
+netconf-yang
+!
 no aaa new-model
 !
 !
-ip cef
 ipv6 unicast-routing
-ipv6 cef
 !
 !
 service timestamps debug datetime msec
@@ -758,6 +760,7 @@ service timestamps log datetime msec
 no service password-encryption
 no service config
 enable password cisco
+enable secret 4 tnhtc92DXBhelxjYk8LWJrPV36S2i4ntXrpb4RFmfqY
 ip classless
 ip subnet-zero
 no ip domain lookup
@@ -780,45 +783,35 @@ interface Loopback0
   description Loopback
   ip address 7.7.7.7 255.255.255.255
 !
-interface GigabitEthernet0/0
+interface GigabitEthernet1
   description OOB Management
   vrf forwarding Mgmt-intf
   ! Configured on launch
   no ip address
-  duplex full
-  speed auto
   no shutdown
 !
-interface GigabitEthernet0/1
+interface GigabitEthernet2
   description to pe-01
   ip address 10.0.0.9 255.255.255.252
   ip ospf cost 1
-  duplex full
-  speed auto
   no shutdown
 !
-interface GigabitEthernet0/2
+interface GigabitEthernet3
   description to pe-02
   ip address 10.0.0.21 255.255.255.252
   ip ospf cost 1
-  duplex full
-  speed auto
   no shutdown
 !
-interface GigabitEthernet0/3
+interface GigabitEthernet4
   description to pe-03
   ip address 10.0.0.33 255.255.255.252
   ip ospf cost 1
-  duplex full
-  speed auto
   no shutdown
 !
-interface GigabitEthernet0/4
+interface GigabitEthernet5
   description to pe-04
   ip address 10.0.0.45 255.255.255.252
   ip ospf cost 1
-  duplex full
-  speed auto
   no shutdown
 !
 !
@@ -849,18 +842,19 @@ router bgp 1
 end</entry>
             <entry key="AutoNetkit.mgmt_ip" type="string"></entry>
             <entry key="AutoNetkit.IGP" type="String">ospf</entry>
-            <entry key="AutoNetkit.ibgp_role" type="String">Disabled</entry>
             <entry key="AutoNetkit.LDP" type="Boolean">false</entry>
             <entry key="AutoNetkit.custom_config_loopback_zero" type="String">7.7.7.7</entry>
+            <entry key="AutoNetkit.ibgp_role" type="String">Disabled</entry>
+            <entry key="AutoNetkit.custom_config_global" type="String">netconf-yang</entry>
         </extensions>
-        <interface id="0" name="GigabitEthernet0/1" ipv4="10.0.0.9" netPrefixLenV4="30"/>
-        <interface id="1" name="GigabitEthernet0/2" ipv4="10.0.0.21" netPrefixLenV4="30"/>
-        <interface id="2" name="GigabitEthernet0/3" ipv4="10.0.0.33" netPrefixLenV4="30"/>
-        <interface id="3" name="GigabitEthernet0/4" ipv4="10.0.0.45" netPrefixLenV4="30"/>
+        <interface id="0" name="GigabitEthernet2" ipv4="10.0.0.9" netPrefixLenV4="30"/>
+        <interface id="1" name="GigabitEthernet3" ipv4="10.0.0.21" netPrefixLenV4="30"/>
+        <interface id="2" name="GigabitEthernet4" ipv4="10.0.0.33" netPrefixLenV4="30"/>
+        <interface id="3" name="GigabitEthernet5" ipv4="10.0.0.45" netPrefixLenV4="30"/>
     </node>
-    <node name="p-02" type="SIMPLE" subtype="IOSv" location="680,296" ipv4="8.8.8.8">
+    <node name="p-02" type="SIMPLE" subtype="CSR1000v" location="680,296" ipv4="8.8.8.8">
         <extensions>
-            <entry key="config" type="string">! IOS Config generated on 2018-12-18 17:04
+            <entry key="config" type="string">! IOS Config generated on 2018-12-19 22:11
 ! by autonetkit_0.24.0
 !
 hostname p-02
@@ -877,12 +871,17 @@ vrf definition Mgmt-intf
 !
 !
 !
+license accept end user agreement
+license boot level premium
+!
+!
+!
+netconf-yang
+!
 no aaa new-model
 !
 !
-ip cef
 ipv6 unicast-routing
-ipv6 cef
 !
 !
 service timestamps debug datetime msec
@@ -890,6 +889,7 @@ service timestamps log datetime msec
 no service password-encryption
 no service config
 enable password cisco
+enable secret 4 tnhtc92DXBhelxjYk8LWJrPV36S2i4ntXrpb4RFmfqY
 ip classless
 ip subnet-zero
 no ip domain lookup
@@ -912,45 +912,35 @@ interface Loopback0
   description Loopback
   ip address 8.8.8.8 255.255.255.255
 !
-interface GigabitEthernet0/0
+interface GigabitEthernet1
   description OOB Management
   vrf forwarding Mgmt-intf
   ! Configured on launch
   no ip address
-  duplex full
-  speed auto
   no shutdown
 !
-interface GigabitEthernet0/1
+interface GigabitEthernet2
   description to pe-02
   ip address 10.0.0.53 255.255.255.252
   ip ospf cost 1
-  duplex full
-  speed auto
   no shutdown
 !
-interface GigabitEthernet0/2
+interface GigabitEthernet3
   description to pe-01
   ip address 10.0.0.17 255.255.255.252
   ip ospf cost 1
-  duplex full
-  speed auto
   no shutdown
 !
-interface GigabitEthernet0/3
+interface GigabitEthernet4
   description to pe-03
   ip address 10.0.0.57 255.255.255.252
   ip ospf cost 1
-  duplex full
-  speed auto
   no shutdown
 !
-interface GigabitEthernet0/4
+interface GigabitEthernet5
   description to pe-04
   ip address 10.0.0.69 255.255.255.252
   ip ospf cost 1
-  duplex full
-  speed auto
   no shutdown
 !
 !
@@ -981,17 +971,18 @@ router bgp 1
 end</entry>
             <entry key="AutoNetkit.mgmt_ip" type="string"></entry>
             <entry key="AutoNetkit.IGP" type="String">ospf</entry>
-            <entry key="AutoNetkit.ibgp_role" type="String">Disabled</entry>
             <entry key="AutoNetkit.custom_config_loopback_zero" type="String">8.8.8.8</entry>
+            <entry key="AutoNetkit.ibgp_role" type="String">Disabled</entry>
+            <entry key="AutoNetkit.custom_config_global" type="String">netconf-yang</entry>
         </extensions>
-        <interface id="0" name="GigabitEthernet0/1" ipv4="10.0.0.53" netPrefixLenV4="30"/>
-        <interface id="1" name="GigabitEthernet0/2" ipv4="10.0.0.17" netPrefixLenV4="30"/>
-        <interface id="2" name="GigabitEthernet0/3" ipv4="10.0.0.57" netPrefixLenV4="30"/>
-        <interface id="3" name="GigabitEthernet0/4" ipv4="10.0.0.69" netPrefixLenV4="30"/>
+        <interface id="0" name="GigabitEthernet2" ipv4="10.0.0.53" netPrefixLenV4="30"/>
+        <interface id="1" name="GigabitEthernet3" ipv4="10.0.0.17" netPrefixLenV4="30"/>
+        <interface id="2" name="GigabitEthernet4" ipv4="10.0.0.57" netPrefixLenV4="30"/>
+        <interface id="3" name="GigabitEthernet5" ipv4="10.0.0.69" netPrefixLenV4="30"/>
     </node>
-    <node name="pe-03" type="SIMPLE" subtype="IOSv" location="845,84" ipv4="9.9.9.9">
+    <node name="pe-03" type="SIMPLE" subtype="CSR1000v" location="845,84" ipv4="9.9.9.9">
         <extensions>
-            <entry key="config" type="string">! IOS Config generated on 2018-12-18 17:04
+            <entry key="config" type="string">! IOS Config generated on 2018-12-19 22:11
 ! by autonetkit_0.24.0
 !
 hostname pe-03
@@ -1008,12 +999,17 @@ vrf definition Mgmt-intf
 !
 !
 !
+license accept end user agreement
+license boot level premium
+!
+!
+!
+netconf-yang
+!
 no aaa new-model
 !
 !
-ip cef
 ipv6 unicast-routing
-ipv6 cef
 !
 !
 service timestamps debug datetime msec
@@ -1021,6 +1017,7 @@ service timestamps log datetime msec
 no service password-encryption
 no service config
 enable password cisco
+enable secret 4 tnhtc92DXBhelxjYk8LWJrPV36S2i4ntXrpb4RFmfqY
 ip classless
 ip subnet-zero
 no ip domain lookup
@@ -1043,45 +1040,35 @@ interface Loopback0
   description Loopback
   ip address 9.9.9.9 255.255.255.255
 !
-interface GigabitEthernet0/0
+interface GigabitEthernet1
   description OOB Management
   vrf forwarding Mgmt-intf
   ! Configured on launch
   no ip address
-  duplex full
-  speed auto
   no shutdown
 !
-interface GigabitEthernet0/1
+interface GigabitEthernet2
   description to p-01
   ip address 10.0.0.34 255.255.255.252
   ip ospf cost 1
-  duplex full
-  speed auto
   no shutdown
 !
-interface GigabitEthernet0/2
+interface GigabitEthernet3
   description to p-02
   ip address 10.0.0.58 255.255.255.252
   ip ospf cost 1
-  duplex full
-  speed auto
   no shutdown
 !
-interface GigabitEthernet0/3
+interface GigabitEthernet4
   description to wan-01
   ip address 10.0.0.37 255.255.255.252
   ip ospf cost 1
-  duplex full
-  speed auto
   no shutdown
 !
-interface GigabitEthernet0/4
+interface GigabitEthernet5
   description to wan-02
   ip address 10.0.0.65 255.255.255.252
   ip ospf cost 1
-  duplex full
-  speed auto
   no shutdown
 !
 !
@@ -1112,17 +1099,18 @@ router bgp 1
 end</entry>
             <entry key="AutoNetkit.mgmt_ip" type="string"></entry>
             <entry key="AutoNetkit.IGP" type="String">ospf</entry>
-            <entry key="AutoNetkit.ibgp_role" type="String">Disabled</entry>
             <entry key="AutoNetkit.custom_config_loopback_zero" type="String">9.9.9.9</entry>
+            <entry key="AutoNetkit.ibgp_role" type="String">Disabled</entry>
+            <entry key="AutoNetkit.custom_config_global" type="String">netconf-yang</entry>
         </extensions>
-        <interface id="0" name="GigabitEthernet0/1" ipv4="10.0.0.34" netPrefixLenV4="30"/>
-        <interface id="1" name="GigabitEthernet0/2" ipv4="10.0.0.58" netPrefixLenV4="30"/>
-        <interface id="2" name="GigabitEthernet0/3" ipv4="10.0.0.37" netPrefixLenV4="30"/>
-        <interface id="3" name="GigabitEthernet0/4" ipv4="10.0.0.65" netPrefixLenV4="30"/>
+        <interface id="0" name="GigabitEthernet2" ipv4="10.0.0.34" netPrefixLenV4="30"/>
+        <interface id="1" name="GigabitEthernet3" ipv4="10.0.0.58" netPrefixLenV4="30"/>
+        <interface id="2" name="GigabitEthernet4" ipv4="10.0.0.37" netPrefixLenV4="30"/>
+        <interface id="3" name="GigabitEthernet5" ipv4="10.0.0.65" netPrefixLenV4="30"/>
     </node>
-    <node name="pe-04" type="SIMPLE" subtype="IOSv" location="842,404" ipv4="10.10.10.10">
+    <node name="pe-04" type="SIMPLE" subtype="CSR1000v" location="842,404" ipv4="10.10.10.10">
         <extensions>
-            <entry key="config" type="string">! IOS Config generated on 2018-12-18 17:04
+            <entry key="config" type="string">! IOS Config generated on 2018-12-19 22:11
 ! by autonetkit_0.24.0
 !
 hostname pe-04
@@ -1139,12 +1127,17 @@ vrf definition Mgmt-intf
 !
 !
 !
+license accept end user agreement
+license boot level premium
+!
+!
+!
+netconf-yang
+!
 no aaa new-model
 !
 !
-ip cef
 ipv6 unicast-routing
-ipv6 cef
 !
 !
 service timestamps debug datetime msec
@@ -1152,6 +1145,7 @@ service timestamps log datetime msec
 no service password-encryption
 no service config
 enable password cisco
+enable secret 4 tnhtc92DXBhelxjYk8LWJrPV36S2i4ntXrpb4RFmfqY
 ip classless
 ip subnet-zero
 no ip domain lookup
@@ -1174,45 +1168,35 @@ interface Loopback0
   description Loopback
   ip address 10.10.10.10 255.255.255.255
 !
-interface GigabitEthernet0/0
+interface GigabitEthernet1
   description OOB Management
   vrf forwarding Mgmt-intf
   ! Configured on launch
   no ip address
-  duplex full
-  speed auto
   no shutdown
 !
-interface GigabitEthernet0/1
+interface GigabitEthernet2
   description to p-01
   ip address 10.0.0.46 255.255.255.252
   ip ospf cost 1
-  duplex full
-  speed auto
   no shutdown
 !
-interface GigabitEthernet0/2
+interface GigabitEthernet3
   description to p-02
   ip address 10.0.0.70 255.255.255.252
   ip ospf cost 1
-  duplex full
-  speed auto
   no shutdown
 !
-interface GigabitEthernet0/3
+interface GigabitEthernet4
   description to wan-02
   ip address 10.0.0.81 255.255.255.252
   ip ospf cost 1
-  duplex full
-  speed auto
   no shutdown
 !
-interface GigabitEthernet0/4
+interface GigabitEthernet5
   description to wan-01
   ip address 10.0.0.41 255.255.255.252
   ip ospf cost 1
-  duplex full
-  speed auto
   no shutdown
 !
 !
@@ -1243,17 +1227,18 @@ router bgp 1
 end</entry>
             <entry key="AutoNetkit.mgmt_ip" type="string"></entry>
             <entry key="AutoNetkit.IGP" type="String">ospf</entry>
-            <entry key="AutoNetkit.ibgp_role" type="String">Disabled</entry>
             <entry key="AutoNetkit.custom_config_loopback_zero" type="String">10.10.10.10</entry>
+            <entry key="AutoNetkit.ibgp_role" type="String">Disabled</entry>
+            <entry key="AutoNetkit.custom_config_global" type="String">netconf-yang</entry>
         </extensions>
-        <interface id="0" name="GigabitEthernet0/1" ipv4="10.0.0.46" netPrefixLenV4="30"/>
-        <interface id="1" name="GigabitEthernet0/2" ipv4="10.0.0.70" netPrefixLenV4="30"/>
-        <interface id="2" name="GigabitEthernet0/3" ipv4="10.0.0.81" netPrefixLenV4="30"/>
-        <interface id="3" name="GigabitEthernet0/4" ipv4="10.0.0.41" netPrefixLenV4="30"/>
+        <interface id="0" name="GigabitEthernet2" ipv4="10.0.0.46" netPrefixLenV4="30"/>
+        <interface id="1" name="GigabitEthernet3" ipv4="10.0.0.70" netPrefixLenV4="30"/>
+        <interface id="2" name="GigabitEthernet4" ipv4="10.0.0.81" netPrefixLenV4="30"/>
+        <interface id="3" name="GigabitEthernet5" ipv4="10.0.0.41" netPrefixLenV4="30"/>
     </node>
-    <node name="wan-01" type="SIMPLE" subtype="IOSv" location="1029,80" ipv4="11.11.11.11">
+    <node name="wan-01" type="SIMPLE" subtype="CSR1000v" location="1029,80" ipv4="11.11.11.11">
         <extensions>
-            <entry key="config" type="string">! IOS Config generated on 2018-12-18 17:04
+            <entry key="config" type="string">! IOS Config generated on 2018-12-19 22:11
 ! by autonetkit_0.24.0
 !
 hostname wan-01
@@ -1270,12 +1255,17 @@ vrf definition Mgmt-intf
 !
 !
 !
+license accept end user agreement
+license boot level premium
+!
+!
+!
+netconf-yang
+!
 no aaa new-model
 !
 !
-ip cef
 ipv6 unicast-routing
-ipv6 cef
 !
 !
 service timestamps debug datetime msec
@@ -1283,6 +1273,7 @@ service timestamps log datetime msec
 no service password-encryption
 no service config
 enable password cisco
+enable secret 4 tnhtc92DXBhelxjYk8LWJrPV36S2i4ntXrpb4RFmfqY
 ip classless
 ip subnet-zero
 no ip domain lookup
@@ -1305,29 +1296,23 @@ interface Loopback0
   description Loopback
   ip address 11.11.11.11 255.255.255.255
 !
-interface GigabitEthernet0/0
+interface GigabitEthernet1
   description OOB Management
   vrf forwarding Mgmt-intf
   ! Configured on launch
   no ip address
-  duplex full
-  speed auto
   no shutdown
 !
-interface GigabitEthernet0/1
+interface GigabitEthernet2
   description to pe-03
   ip address 10.0.0.38 255.255.255.252
   ip ospf cost 1
-  duplex full
-  speed auto
   no shutdown
 !
-interface GigabitEthernet0/2
+interface GigabitEthernet3
   description to pe-04
   ip address 10.0.0.42 255.255.255.252
   ip ospf cost 1
-  duplex full
-  speed auto
   no shutdown
 !
 !
@@ -1356,15 +1341,16 @@ router bgp 1
 end</entry>
             <entry key="AutoNetkit.mgmt_ip" type="string"></entry>
             <entry key="AutoNetkit.IGP" type="String">ospf</entry>
-            <entry key="AutoNetkit.ibgp_role" type="String">Disabled</entry>
             <entry key="AutoNetkit.custom_config_loopback_zero" type="String">11.11.11.11</entry>
+            <entry key="AutoNetkit.ibgp_role" type="String">Disabled</entry>
+            <entry key="AutoNetkit.custom_config_global" type="String">netconf-yang</entry>
         </extensions>
-        <interface id="0" name="GigabitEthernet0/1" ipv4="10.0.0.38" netPrefixLenV4="30"/>
-        <interface id="1" name="GigabitEthernet0/2" ipv4="10.0.0.42" netPrefixLenV4="30"/>
+        <interface id="0" name="GigabitEthernet2" ipv4="10.0.0.38" netPrefixLenV4="30"/>
+        <interface id="1" name="GigabitEthernet3" ipv4="10.0.0.42" netPrefixLenV4="30"/>
     </node>
-    <node name="wan-02" type="SIMPLE" subtype="IOSv" location="1027,400" ipv4="12.12.12.12">
+    <node name="wan-02" type="SIMPLE" subtype="CSR1000v" location="1027,400" ipv4="12.12.12.12">
         <extensions>
-            <entry key="config" type="string">! IOS Config generated on 2018-12-18 17:04
+            <entry key="config" type="string">! IOS Config generated on 2018-12-19 22:11
 ! by autonetkit_0.24.0
 !
 hostname wan-02
@@ -1381,12 +1367,17 @@ vrf definition Mgmt-intf
 !
 !
 !
+license accept end user agreement
+license boot level premium
+!
+!
+!
+netconf-yang
+!
 no aaa new-model
 !
 !
-ip cef
 ipv6 unicast-routing
-ipv6 cef
 !
 !
 service timestamps debug datetime msec
@@ -1394,6 +1385,7 @@ service timestamps log datetime msec
 no service password-encryption
 no service config
 enable password cisco
+enable secret 4 tnhtc92DXBhelxjYk8LWJrPV36S2i4ntXrpb4RFmfqY
 ip classless
 ip subnet-zero
 no ip domain lookup
@@ -1416,29 +1408,23 @@ interface Loopback0
   description Loopback
   ip address 12.12.12.12 255.255.255.255
 !
-interface GigabitEthernet0/0
+interface GigabitEthernet1
   description OOB Management
   vrf forwarding Mgmt-intf
   ! Configured on launch
   no ip address
-  duplex full
-  speed auto
   no shutdown
 !
-interface GigabitEthernet0/1
+interface GigabitEthernet2
   description to pe-04
   ip address 10.0.0.82 255.255.255.252
   ip ospf cost 1
-  duplex full
-  speed auto
   no shutdown
 !
-interface GigabitEthernet0/2
+interface GigabitEthernet3
   description to pe-03
   ip address 10.0.0.66 255.255.255.252
   ip ospf cost 1
-  duplex full
-  speed auto
   no shutdown
 !
 !
@@ -1467,11 +1453,12 @@ router bgp 1
 end</entry>
             <entry key="AutoNetkit.mgmt_ip" type="string"></entry>
             <entry key="AutoNetkit.IGP" type="String">ospf</entry>
-            <entry key="AutoNetkit.ibgp_role" type="String">Disabled</entry>
             <entry key="AutoNetkit.custom_config_loopback_zero" type="String">12.12.12.12</entry>
+            <entry key="AutoNetkit.ibgp_role" type="String">Disabled</entry>
+            <entry key="AutoNetkit.custom_config_global" type="String">netconf-yang</entry>
         </extensions>
-        <interface id="0" name="GigabitEthernet0/1" ipv4="10.0.0.82" netPrefixLenV4="30"/>
-        <interface id="1" name="GigabitEthernet0/2" ipv4="10.0.0.66" netPrefixLenV4="30"/>
+        <interface id="0" name="GigabitEthernet2" ipv4="10.0.0.82" netPrefixLenV4="30"/>
+        <interface id="1" name="GigabitEthernet3" ipv4="10.0.0.66" netPrefixLenV4="30"/>
     </node>
     <node name="server-1" type="SIMPLE" subtype="server" location="68,181">
         <extensions>
