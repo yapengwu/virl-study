@@ -160,14 +160,6 @@ interface GigabitEthernet4
  no mop enabled
  no mop sysid
 !
-router bgp 1
- bgp router-id 1.1.1.1
- bgp log-neighbor-changes
- !
- address-family ipv4
-  network 1.1.1.1 mask 255.255.255.255
- exit-address-family
-!
 !
 virtual-service csr_mgmt
 !
@@ -386,14 +378,6 @@ interface GigabitEthernet4
  no mop enabled
  no mop sysid
 !
-router bgp 1
- bgp router-id 2.2.2.2
- bgp log-neighbor-changes
- !
- address-family ipv4
-  network 2.2.2.2 mask 255.255.255.255
- exit-address-family
-!
 !
 virtual-service csr_mgmt
 !
@@ -611,13 +595,11 @@ interface GigabitEthernet4
  no mop enabled
  no mop sysid
 !
-router bgp 1
- bgp router-id 3.3.3.3
- bgp log-neighbor-changes
- !
- address-family ipv4
-  network 3.3.3.3 mask 255.255.255.255
- exit-address-family
+interface GigabitEthernet5
+ description to pe-02
+ negotiation auto
+ no mop enabled
+ no mop sysid
 !
 !
 virtual-service csr_mgmt
@@ -682,6 +664,7 @@ end
         <interface id="0" name="GigabitEthernet2" ipv4="10.0.0.62" netPrefixLenV4="30"/>
         <interface id="1" name="GigabitEthernet3" ipv4="10.0.0.30" netPrefixLenV4="30"/>
         <interface id="2" name="GigabitEthernet4" ipv4="10.0.0.25" netPrefixLenV4="30"/>
+        <interface id="3" name="GigabitEthernet5"/>
     </node>
     <node name="as-04" type="SIMPLE" subtype="CSR1000v" location="361,300" ipv4="4.4.4.4">
         <extensions>
@@ -836,13 +819,11 @@ interface GigabitEthernet4
  no mop enabled
  no mop sysid
 !
-router bgp 1
- bgp router-id 4.4.4.4
- bgp log-neighbor-changes
- !
- address-family ipv4
-  network 4.4.4.4 mask 255.255.255.255
- exit-address-family
+interface GigabitEthernet5
+ description to pe-01
+ negotiation auto
+ no mop enabled
+ no mop sysid
 !
 !
 virtual-service csr_mgmt
@@ -908,6 +889,7 @@ end
         <interface id="0" name="GigabitEthernet2" ipv4="10.0.0.50" netPrefixLenV4="30"/>
         <interface id="1" name="GigabitEthernet3" ipv4="10.0.0.74" netPrefixLenV4="30"/>
         <interface id="2" name="GigabitEthernet4" ipv4="10.0.0.77" netPrefixLenV4="30"/>
+        <interface id="3" name="GigabitEthernet5"/>
     </node>
     <node name="pe-01" type="SIMPLE" subtype="CSR1000v" location="521,93" ipv4="5.5.5.5">
         <extensions>
@@ -1062,13 +1044,11 @@ interface GigabitEthernet4
  no mop enabled
  no mop sysid
 !
-router bgp 1
- bgp router-id 5.5.5.5
- bgp log-neighbor-changes
- !
- address-family ipv4
-  network 5.5.5.5 mask 255.255.255.255
- exit-address-family
+interface GigabitEthernet5
+ description to as-04
+ negotiation auto
+ no mop enabled
+ no mop sysid
 !
 !
 virtual-service csr_mgmt
@@ -1131,6 +1111,7 @@ end
         <interface id="0" name="GigabitEthernet2" ipv4="10.0.0.26" netPrefixLenV4="30"/>
         <interface id="1" name="GigabitEthernet3" ipv4="10.0.0.10" netPrefixLenV4="30"/>
         <interface id="2" name="GigabitEthernet4" ipv4="10.0.0.18" netPrefixLenV4="30"/>
+        <interface id="3" name="GigabitEthernet5"/>
     </node>
     <node name="pe-02" type="SIMPLE" subtype="CSR1000v" location="531,409" ipv4="6.6.6.6">
         <extensions>
@@ -1285,13 +1266,11 @@ interface GigabitEthernet4
  no mop enabled
  no mop sysid
 !
-router bgp 1
- bgp router-id 6.6.6.6
- bgp log-neighbor-changes
- !
- address-family ipv4
-  network 6.6.6.6 mask 255.255.255.255
- exit-address-family
+interface GigabitEthernet5
+ description to as-03
+ negotiation auto
+ no mop enabled
+ no mop sysid
 !
 !
 virtual-service csr_mgmt
@@ -1357,6 +1336,7 @@ end
         <interface id="0" name="GigabitEthernet2" ipv4="10.0.0.78" netPrefixLenV4="30"/>
         <interface id="1" name="GigabitEthernet3" ipv4="10.0.0.22" netPrefixLenV4="30"/>
         <interface id="2" name="GigabitEthernet4" ipv4="10.0.0.54" netPrefixLenV4="30"/>
+        <interface id="3" name="GigabitEthernet5" />
     </node>
     <node name="p-01" type="SIMPLE" subtype="CSR1000v" location="675,194" ipv4="7.7.7.7">
         <extensions>
@@ -1517,14 +1497,6 @@ interface GigabitEthernet5
  negotiation auto
  no mop enabled
  no mop sysid
-!
-router bgp 1
- bgp router-id 7.7.7.7
- bgp log-neighbor-changes
- !
- address-family ipv4
-  network 7.7.7.7 mask 255.255.255.255
- exit-address-family
 !
 !
 virtual-service csr_mgmt
@@ -1751,14 +1723,6 @@ interface GigabitEthernet5
  no mop enabled
  no mop sysid
 !
-router bgp 1
- bgp router-id 8.8.8.8
- bgp log-neighbor-changes
- !
- address-family ipv4
-  network 8.8.8.8 mask 255.255.255.255
- exit-address-family
-!
 !
 virtual-service csr_mgmt
 !
@@ -1983,14 +1947,6 @@ interface GigabitEthernet5
  negotiation auto
  no mop enabled
  no mop sysid
-!
-router bgp 1
- bgp router-id 9.9.9.9
- bgp log-neighbor-changes
- !
- address-family ipv4
-  network 9.9.9.9 mask 255.255.255.255
- exit-address-family
 !
 !
 virtual-service csr_mgmt
@@ -2217,14 +2173,6 @@ interface GigabitEthernet5
  no mop enabled
  no mop sysid
 !
-router bgp 1
- bgp router-id 10.10.10.10
- bgp log-neighbor-changes
- !
- address-family ipv4
-  network 10.10.10.10 mask 255.255.255.255
- exit-address-family
-!
 !
 virtual-service csr_mgmt
 !
@@ -2438,14 +2386,6 @@ interface GigabitEthernet3
  no mop enabled
  no mop sysid
 !
-router bgp 1
- bgp router-id 11.11.11.11
- bgp log-neighbor-changes
- !
- address-family ipv4
-  network 11.11.11.11 mask 255.255.255.255
- exit-address-family
-!
 !
 virtual-service csr_mgmt
 !
@@ -2656,14 +2596,6 @@ interface GigabitEthernet3
  negotiation auto
  no mop enabled
  no mop sysid
-!
-router bgp 1
- bgp router-id 12.12.12.12
- bgp log-neighbor-changes
- !
- address-family ipv4
-  network 12.12.12.12 mask 255.255.255.255
- exit-address-family
 !
 !
 virtual-service csr_mgmt
@@ -2892,6 +2824,8 @@ write_files:
         <rect x="478" y="19" radius="10" width="432" height="446" fill="E5E5E5" stroke="E5E5E5" stroke-width="3"/>
         <text x="629" y="482" font-size="18">Aggregation</text>
     </annotations>
+    <connection dst="/virl:topology/virl:node[3]/virl:interface[4]" src="/virl:topology/virl:node[6]/virl:interface[4]"/>
+    <connection dst="/virl:topology/virl:node[4]/virl:interface[4]" src="/virl:topology/virl:node[5]/virl:interface[4]"/>
     <connection dst="/virl:topology/virl:node[1]/virl:interface[1]" src="/virl:topology/virl:node[13]/virl:interface[1]"/>
     <connection dst="/virl:topology/virl:node[2]/virl:interface[1]" src="/virl:topology/virl:node[14]/virl:interface[1]"/>
     <connection dst="/virl:topology/virl:node[4]/virl:interface[1]" src="/virl:topology/virl:node[1]/virl:interface[2]"/>
